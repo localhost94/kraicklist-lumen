@@ -23,8 +23,7 @@ class ListMysqlController extends Controller
         $rawData = Sample::query();
         $keyword = $request->input('q');
         if (!empty($keyword)) {
-            $rawData = $rawData->whereRaw("MATCH(title) AGAINST(?)", [$keyword])
-                                ->orWhereRaw("MATCH(content) AGAINST(?)", [$keyword])
+            $rawData = $rawData->whereRaw("MATCH(title, content) AGAINST(?)", [$keyword])
             ;
         }
 
