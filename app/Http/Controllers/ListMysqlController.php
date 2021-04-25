@@ -27,7 +27,7 @@ class ListMysqlController extends Controller
             ;
         }
 
-        $paginatedData = $rawData->get();
+        $paginatedData = $rawData->simplePaginate(10);
         $data = [
             'meta' => [
                 'total' => 0,
@@ -35,7 +35,7 @@ class ListMysqlController extends Controller
                 'offsetStart' => 0,
                 'totalPage' => 0
             ],
-            'data' => $paginatedData
+            'data' => $paginatedData->toArray()['data']
         ];
 
         return response()->json($data);

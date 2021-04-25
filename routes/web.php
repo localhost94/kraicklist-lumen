@@ -16,4 +16,4 @@
 $router->get('/', function () use ($router) {
     return view('welcome');
 });
-$router->get('/list', 'ListController@list');
+$router->get('/list', 'ListMysqlController@list');
