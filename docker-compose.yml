@@ -40,4 +40,4 @@ services:
         MYSQL_ROOT_PASSWORD: bismillah
       volumes:
         - ./data:/var/lib/mysql
-      workdir: /var/lib/mysql
+      working_dir: /var/lib/mysql
