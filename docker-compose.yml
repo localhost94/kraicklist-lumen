@@ -19,27 +19,8 @@ services:
         - ./php.ini:/usr/local/etc/php/php.ini
       expose:
         - 9000
-
-    # mongo:
-    #   restart: always
-    #   container_name: mongo
-    #   image: mongo:latest
-    #   environment:
-    #     MONGO_INITDB_ROOT_USERNAME: root
-    #     MONGO_INITDB_ROOT_PASSWORD: bismillah
-    #   volumes:
-    #     - ./mongo:/data/db
-    #   ports:
-    #     - 27017:27017
-
-    # mariadb:
-    #   restart: always
-    #   container_name: mariadb
-    #   image: mariadb:10.5
-    #   environment:
-    #     MYSQL_ROOT_PASSWORD: bismillah
-    #   volumes:
-    #     - ./data:/var/lib/mysql
-    #   working_dir: /var/lib/mysql
-    #   ports:
-    #     - 3306:3306
+        
+networks:
+  default:
+    external:
+      name: kraicklist_default
