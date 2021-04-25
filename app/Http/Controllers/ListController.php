@@ -66,7 +66,7 @@ class ListController extends Controller
             $start *= $numPosts;
         }
 
-        $paginatedData = $rawData->skip(10)->take((int)$perpage)->get();
+        $paginatedData = $rawData->skip(5)->take((int)$perpage)->get();
 
         $data = [
             'meta' => [
