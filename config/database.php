@@ -36,6 +36,7 @@ return [
     'connections' => [
         'mongodb' => [
             'driver' => 'mongodb',
+            'dsn' => env('MONGO_DB_DSN', ''),
             'host' => env('MONGO_DB_HOST', '127.0.0.1'),
             'port' => env('MONGO_DB_PORT', 27017),
             'database' => env('MONGO_DB_DATABASE', 'homestead'),
