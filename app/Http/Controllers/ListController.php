@@ -27,12 +27,6 @@ class ListController extends Controller
             $rawData = $rawData->whereRaw(['$text' => ['$search' => $keyword]]);
         }
 
-        $sortBy = $request->input('sortBy');
-        $sortType = $request->input('sortType');
-        if (!empty($sortBy) && !empty($sortType)) {
-            $rawData = $rawData->orderBy($sortBy, $sortType);
-        }
-
         if (!$rawData) {
             return response()->json([0 => ['title' => 'Error', 'content' => 'Data is not exists.']]);
         }
@@ -41,16 +35,6 @@ class ListController extends Controller
         if (!$data) {
             return response()->json([0 => ['title' => 'Error', 'content' => 'Empty data from pagination.']]);
         }
-        // $paginatedData = $rawData->get();
-        // $data = [
-        //     'meta' => [
-        //         'total' => 0,
-        //         'page' => 0,
-        //         'offsetStart' => 0,
-        //         'totalPage' => 0
-        //     ],
-        //     'data' => $paginatedData
-        // ];
 
         return response()->json($data);
     }

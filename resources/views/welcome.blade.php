@@ -14,7 +14,7 @@
             <input type="hidden" id="page" name="page" value="0">
             <label for="query">Keyword</label>
             <input type="text" id="query" name="query">
-            <br>
+            <!-- <br>
             <label for="">Sort by</label>
                 <select name="sortBy" id="sortBy">
                     <option value="title">Title</option>
@@ -27,7 +27,7 @@
                     <option value="asc">ASC</option>
                     <option value="desc">DESC</option>
                 </select>
-            <br>
+            <br> -->
             <button type="submit">Search</button>
         </form>
     </div>
