@@ -35,10 +35,6 @@ class ListController extends Controller
         $tnt->selectIndex("text.index");
 
         $keyword = $request->input('q');
-        if (!empty($keyword)) {
-            $rawData = $rawData->whereRaw(['$text' => ['$search' => $keyword]]);
-        }
-
         $paginatedData = $tnt->search($keyword, $request->input('perpage'));
 
         // $data = $this->pagination($rawData, $request->input('perpage'), $request->input('page'));
