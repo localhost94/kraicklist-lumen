@@ -37,7 +37,7 @@ services:
       container_name: mariadb
       image: mariadb:10.5
       environment:
-        MYSQL_ROOT_PASSWORD: example
+        MYSQL_ROOT_PASSWORD: bismillah
       volumes:
         - ./data:/var/lib/mysql
       workdir: /var/lib/mysql
