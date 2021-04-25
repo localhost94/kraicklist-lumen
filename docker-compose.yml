@@ -41,3 +41,5 @@ services:
       volumes:
         - ./data:/var/lib/mysql
       working_dir: /var/lib/mysql
+      ports:
+        - 3306:3306
