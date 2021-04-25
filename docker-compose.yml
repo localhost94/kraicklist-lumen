@@ -32,14 +32,14 @@ services:
     #   ports:
     #     - 27017:27017
 
-    mariadb:
-      restart: always
-      container_name: mariadb
-      image: mariadb:10.5
-      environment:
-        MYSQL_ROOT_PASSWORD: bismillah
-      volumes:
-        - ./data:/var/lib/mysql
-      working_dir: /var/lib/mysql
-      ports:
-        - 3306:3306
+    # mariadb:
+    #   restart: always
+    #   container_name: mariadb
+    #   image: mariadb:10.5
+    #   environment:
+    #     MYSQL_ROOT_PASSWORD: bismillah
+    #   volumes:
+    #     - ./data:/var/lib/mysql
+    #   working_dir: /var/lib/mysql
+    #   ports:
+    #     - 3306:3306

@@ -23,21 +23,13 @@ class ListMysqlController extends Controller
         $rawData = Sample::query();
         $keyword = $request->input('q');
         if (!empty($keyword)) {
-            $rawData = $rawData->whereRaw("MATCH(title, content) AGAINST(?)", [$keyword])
-            ;
+            $rawData = $rawData->selectRaw('*,MATCH (title, content) AGAINST (\''.$keyword.'\' IN NATURAL LANGUAGE MODE) AS score');
+            $rawData = $rawData->whereRaw("MATCH(title, content) AGAINST(? IN NATURAL LANGUAGE MODE)", [$keyword]);
         }
 
-        $paginatedData = $rawData->simplePaginate(10);
-        $data = [
-            'meta' => [
-                'total' => 0,
-                'page' => 0,
-                'offsetStart' => 0,
-                'totalPage' => 0
-            ],
-            'data' => $paginatedData->toArray()['data']
-        ];
-
+        // $data = $rawData->orderBy('score', 'desc')->paginate($request->input('perpage') ?? 2);
+        $data = $rawData->orderBy('score', 'desc')->get();
+        
         return response()->json($data);
     }
 }

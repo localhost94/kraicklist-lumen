@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sample;
+use App\Models\Data;
 use Illuminate\Http\Request;
-use TeamTNT\TNTSearch\TNTSearch;
+use Illuminate\Support\Facades\Storage;
 
 class ListController extends Controller
 {
@@ -20,37 +20,37 @@ class ListController extends Controller
     public function list(Request $request)
     {
         ini_set('memory_limit', '-1');
-        $tnt = new TNTSearch;
-        $tnt->loadConfig([
-            'driver'    => 'mysql',
-            'host'      => env('DB_HOST'),
-            'database'  => env('DB_DATABASE'),
-            'username'  => env('DB_USERNAME'),
-            'password'  => env('DB_PASSWORD'),
-            'storage'   => $this->storage_path('app/'),
-            'stemmer'   => \TeamTNT\TNTSearch\Stemmer\PorterStemmer::class//optional
-        ]);
-        $tnt->loadConfig($config);
-
-        $tnt->selectIndex("text.index");
+        $rawData = Data::query();
 
         $keyword = $request->input('q');
-        $paginatedData = $tnt->search($keyword, $request->input('perpage'));
+        if (!empty($keyword)) {
+            $rawData = $rawData->whereRaw(['$text' => ['$search' => $keyword]]);
+        }
 
-        // $data = $this->pagination($rawData, $request->input('perpage'), $request->input('page'));
-        // if (!$data) {
-        //     return response()->json([0 => ['title' => 'Error', 'content' => 'Empty data from pagination.']]);
-        // }
-        $paginatedData = $rawData->get();
-        $data = [
-            'meta' => [
-                'total' => 0,
-                'page' => 0,
-                'offsetStart' => 0,
-                'totalPage' => 0
-            ],
-            'data' => $paginatedData
-        ];
+        $sortBy = $request->input('sortBy');
+        $sortType = $request->input('sortType');
+        if (!empty($sortBy) && !empty($sortType)) {
+            $rawData = $rawData->orderBy($sortBy, $sortType);
+        }
+
+        if (!$rawData) {
+            return response()->json([0 => ['title' => 'Error', 'content' => 'Data is not exists.']]);
+        }
+
+        $data = $this->pagination($rawData, $request->input('perpage'), $request->input('page'));
+        if (!$data) {
+            return response()->json([0 => ['title' => 'Error', 'content' => 'Empty data from pagination.']]);
+        }
+        // $paginatedData = $rawData->get();
+        // $data = [
+        //     'meta' => [
+        //         'total' => 0,
+        //         'page' => 0,
+        //         'offsetStart' => 0,
+        //         'totalPage' => 0
+        //     ],
+        //     'data' => $paginatedData
+        // ];
 
         return response()->json($data);
     }

@@ -10,9 +10,9 @@ export let options = {
   },
 };
 
-// const BASE_URL = 'http://54.255.174.29:3001/list';
+const BASE_URL = 'http://54.255.174.29:3001/list';
 // const BASE_URL = 'http://kraicklist.local/list';
-const BASE_URL = 'http://kraicklist-lumen.local/list';
+// const BASE_URL = 'http://kraicklist-lumen.local/list';
 
 export default () => {
   const keyword = 'iphone';
