@@ -3,7 +3,7 @@ import { check, group, sleep, fail } from 'k6';
 
 export let options = {
   vus: 100, // 1 user looping for 1 minute
-  duration: '30s',
+  duration: '60s',
 
   thresholds: {
     http_req_duration: ['p(90)<500'], // 99% of requests must complete below 1.5s
@@ -11,8 +11,8 @@ export let options = {
 };
 
 // const BASE_URL = 'http://54.255.174.29:3001/list';
-const BASE_URL = 'http://kraicklist.local/list';
-// const BASE_URL = 'http://kraicklist-lumen.local/list';
+// const BASE_URL = 'http://kraicklist.local/list';
+const BASE_URL = 'http://kraicklist-lumen.local/list';
 
 export default () => {
   const keyword = 'iphone';

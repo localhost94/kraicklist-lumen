@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\InsertData::class,
+        \App\Console\Commands\IndexData::class
     ];
 
     /**
