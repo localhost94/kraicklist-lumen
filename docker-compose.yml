@@ -19,6 +19,14 @@ services:
         - ./php.ini:/usr/local/etc/php/php.ini
       expose:
         - 9000
+    mariadb:
+      restart: always
+      container_name: mariadb
+      image: mariadb:10.5
+      volumes:
+        - ./data:/var/lib/mysql
+      ports:
+        - 3306:3306
         
 networks:
   default:
