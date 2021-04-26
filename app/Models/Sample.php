@@ -17,4 +17,9 @@ class Sample extends Model
     protected $fillable = [
         'title', 'content', 'thumb_url', 'tags', 'image_urls', 'created_at', 'updated_at'
     ];
+
+    public function searchableAs()
+    {
+        return 'text_index';
+    }
 }
