@@ -8,6 +8,8 @@
         "php": "^7.3|^8.0",
         "jenssegers/mongodb": "^3.8",
         "laravel/lumen-framework": "^8.0",
+        "laravel/scout": "^8.6",
+        "meilisearch/meilisearch-laravel-scout": "^0.12.5",
         "teamtnt/tntsearch": "^2.8"
     },
     "require-dev": {

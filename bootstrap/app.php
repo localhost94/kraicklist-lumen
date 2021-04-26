@@ -23,9 +23,12 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+$app->instance('path.config', app()->basePath() . DIRECTORY_SEPARATOR . 'config');
+
 // $app->withFacades();
 
 $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
+$app->register(Laravel\Scout\ScoutServiceProvider::class);
 $app->withEloquent();
 
 /*
@@ -61,6 +64,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('scout');
 
 /*
 |--------------------------------------------------------------------------
