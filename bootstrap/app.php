@@ -27,8 +27,6 @@ $app->instance('path.config', app()->basePath() . DIRECTORY_SEPARATOR . 'config'
 
 // $app->withFacades();
 
-$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
-$app->register(Laravel\Scout\ScoutServiceProvider::class);
 $app->withEloquent();
 
 /*
@@ -99,6 +97,9 @@ $app->configure('scout');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
+$app->register(Laravel\Scout\ScoutServiceProvider::class);
+$app->register(Meilisearch\Scout\MeilisearchServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
